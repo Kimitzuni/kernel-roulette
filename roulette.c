@@ -21,8 +21,10 @@ void timer_callback(struct timer_list *t_list)
 	get_random_bytes(&i, sizeof(i));
 	x = i % 25;
 	
-	if (x == 0)
-		panic("Oops!");
+	if (x == 0) {
+		printk("==[ Kernel Panic ]==");
+		panic("roulette - Kernel Panic");
+	}
 
 	printk("panic: %d", x);
 	mod_timer(&timer, jiffies + msecs_to_jiffies(2000));
